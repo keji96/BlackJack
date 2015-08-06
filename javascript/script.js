@@ -31,28 +31,48 @@ function cardDeck(){
     }
     return deck;
 }
-
+//Test: Generate a standard 52 card Playing Deck
 var deck = cardDeck()
 
-//Test: generate a standard 52 card playing deck
+function card(deck){
 
-function deal(deck){
 var randomIndex = Math.floor(Math.random()*deck.length);
    card1 = deck.splice(randomIndex, 1)[0];
-   console.log(card1);
+  return card1;
 
-}deal(deck)
+}
+//Test Randomly Select one card from the Deck
 
-//Test: Randomly select one card from the deck
-var playerHand = []
 function player(card){
+   var playerHand = []
+   var hitCardValue = hitMe(card(deck))
+    playerHand[0] = card(deck);
+    playerHand[1] = card(deck);
 
-     playerHand[0] = card(deck);
-      playerHand[1] = card(deck);
-      var playerhandValue = playerHand[0].gameValue + playerHand[1].gameValue;
-      console.log(playerHand)
-      console.log(playerhandValue)
+var playerhandValue = playerHand[0].gameValue + playerHand[1].gameValue + hitCardValue
 
-}player(deal);
+}
+//Test deal two cards to the player and record thier summed value.
 
-Test:// Assignn a player two random cards from the deck and tracks the value of those cards
+
+function dealer(card){
+   var dealerHand = []
+  dealerHand[0] = card(deck);
+  dealerHand[1] = card(deck);
+ var dealerhandValue = dealerHand[0].gameValue + dealerHand[1].gameValue
+
+ while(dealerhandValue < 16){
+     var hitCardValue = hitMe(card(deck))
+
+     dealerhandValue += hitCardValue
+
+ }
+ //Test Deal two cards to the deal record sum value, make the dealer a hit if dealers hand is less than 16.
+
+
+}dealer(deal);
+
+function hitMe(card){
+    return card.gameValue
+}
+ //Test generate one random card to give to the player if requested or to the deal if the value of the dealers hand is under 16.
