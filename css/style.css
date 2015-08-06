@@ -1,0 +1,27 @@
+body{
+  background-color: green;
+text-align: center;
+}
+
+h1{
+
+  color:red;
+}
+
+.Player{
+  width: 75%;
+  border: 2px solid yellow;
+  height: 200px;
+  margin-left: 10%;
+  background-color: darkgreen;
+  margin-top: 600px
+}
+
+.dealer{
+  width: 75%;
+  border: 2px solid red;
+  height: 200px;
+  margin-left: 10%;
+  background-color: lightgreen;
+
+}
