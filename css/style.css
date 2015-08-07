@@ -1,7 +1,7 @@
 body {
+background: "taple.jpg";
 
-background-repeat: no-repeat;
-width:1280px;
+ width:1280px;
   height:100%;
   margin:auto;
   text-align:center;
@@ -13,19 +13,52 @@ h1{
 }
 
 .Player{
-  width: 75%;
+  position:relative;
+  width: 50%;
   border: 2px solid yellow;
-  height: 200px;
+  height: 250px;
   margin-left: 10%;
   background-color: darkgreen;
-  margin-top: 600px
+  bottom: 0px;
 }
 
 .dealer{
-  width: 75%;
+  width: 50%;
   border: 2px solid red;
-  height: 200px;
+  height: 250px;
   margin-left: 10%;
   background-color: lightgreen;
-
+  top: 30px;
 }
+
+
+
+.card {
+  background-color:black;
+  border-color: #808080 #000000 #000000 #808080;
+  border-width: 1px;
+  border-style: solid;
+  color: white;
+  font-size: 20pt;
+  position: absolute;
+  width:  3.75em;
+  height: 5.00em;
+  top:0px
+  right 0px;
+}
+
+
+
+h3{
+  position: absolute;
+ top: 0px;
+ right: 10px;
+}
+
+.spotCenter {  font-size: 250%;
+  position: absolute;
+  left: 0.325em;
+  top:  0.375em; }
+
+
+  .spotTopLeft { position: absolute; left: 0.60em; top: 0.5em; }
