@@ -16,6 +16,7 @@ var card = $('<div>').addClass("card");
     card.css('position', 'absolute');
     card.css("width",'3.75em');
     card.css('height', '5.00em');
+    card.css('left','1.0em')
 
 var symbol = $('<div>').addClass('spotCenter')
     var hearts = "hearts"

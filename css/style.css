@@ -14,7 +14,7 @@ h1{
 
 .Player{
   position:relative;
-  width: 50%;
+  width: 75%;
   border: 2px solid yellow;
   height: 250px;
   margin-left: 10%;
@@ -23,42 +23,11 @@ h1{
 }
 
 .dealer{
-  width: 50%;
+position:relative;
+  width: 75%;
   border: 2px solid red;
   height: 250px;
   margin-left: 10%;
   background-color: lightgreen;
-  top: 30px;
+  top: 0px;
 }
-
-
-
-.card {
-  background-color:black;
-  border-color: #808080 #000000 #000000 #808080;
-  border-width: 1px;
-  border-style: solid;
-  color: white;
-  font-size: 20pt;
-  position: absolute;
-  width:  3.75em;
-  height: 5.00em;
-  top:0px
-  right 0px;
-}
-
-
-
-h3{
-  position: absolute;
- top: 0px;
- right: 10px;
-}
-
-.spotCenter {  font-size: 250%;
-  position: absolute;
-  left: 0.325em;
-  top:  0.375em; }
-
-
-  .spotTopLeft { position: absolute; left: 0.60em; top: 0.5em; }
