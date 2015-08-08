@@ -9,6 +9,13 @@ function init(){
 
 var playerValue;
 var dealerValue;
+var bet;
+var balance = 400;
+$( '#hitme' ).hide();
+$( '#stay' ).hide();
+$( '#deal' ).hide();
+//console.log(balance)
+
 function cardDeck(){
     var suits = ['hearts', 'spades', "diams", "clubs"];
     var faceCards = ["J", "Q", "K", "A"]
@@ -151,27 +158,10 @@ function hitMe(card){
 
 //Test generate one random card to give to the player if requested or to the deal if the value of the dealers hand is under 16.
 
-function dealerHits(dealerhandValue){
-  var dealerHitCardspacing = 12;
-
-  while(dealerhandValue < 16){
-      var hitCardValue = hitMe(card(deck));
-
-      dealerHitCardspacing +=4;
-      var dealerhitCard = cardGenerator(hitCardValue.number, hitCardValue.suit);
-      dealerhitCard.css('left', dealerHitCardspacing+'em');
-      dealerhitCard.css('bottom', '0.375em');
-      var dealerConsole = $(".dealer")
-      dealerConsole.append(dealerhitCard);
-      dealerhandValue += hitCardValue.gameValue;
-
- }
-return dealerhandValue;
-}
-//Test: make the dealer take a hit if the value of the dealers hand is less than 16.
 
 
-$('#deal').click(function(e){
+
+function dealCards(){
   $( "div" ).remove( ".card" );
   $( "#hitme" ).show()
   $( "#stay" ).show()
@@ -181,19 +171,19 @@ $('#deal').click(function(e){
   var puttingHandValueOnBoard = $(".handvalue").text(displayPlayHand);
   puttingHandValueOnBoard.css('left','0.0em');
   puttingHandValueOnBoard.css('top', '0.0em');
-  puttingHandValueOnBoard.css('fontSize', '250%')
+
 
   var playerConsole = $(".Player");
   playerConsole.append(puttingHandValueOnBoard);
   dealerValue = dealer(card);
 
-});
+}
 
 //Test: Deal two random Cards to the player and the dealer when the deal button is pressed
 
 var hitCardSpacing = 12;
 $("#hitme").click(function(e){
-  //console.log("second" + playerValue);
+
   var playerHit = hitMe(card(deck));
 
   hitCardSpacing +=4
@@ -201,7 +191,7 @@ $("#hitme").click(function(e){
   hitDisplay.css('left',hitCardSpacing+"em")
   var playerConsole = $(".Player");
   playerConsole.append(hitDisplay);
-  //console.log("hit" + playerHit.gameValue);
+
 
   playerValue += playerHit.gameValue;
   var displayPlayHand = "Player Hand: " + playerValue;
@@ -223,6 +213,35 @@ $("#hitme").click(function(e){
  //Calculate the value of the player's hand based on the value of the hit card(s).
  //Tells a player when they have gone over 21
 
+ function dealerHits(dealerhandValue){
+   var dealerHitCardspacing = 12;
+
+   while(dealerhandValue <= 17){
+       var hitCardValue = hitMe(card(deck));
+
+       dealerHitCardspacing +=4;
+       var dealerhitCard = cardGenerator(hitCardValue.number, hitCardValue.suit);
+       dealerhitCard.css('left', dealerHitCardspacing+'em');
+       dealerhitCard.css('bottom', '0.375em');
+       var dealerConsole = $(".dealer")
+       dealerConsole.append(dealerhitCard);
+       dealerhandValue += hitCardValue.gameValue;
+
+  }
+
+ return dealerhandValue;
+ }
+ //Test: make the dealer take a hit if the value of the dealers hand is less or equal to 17.
+
+ $('#bet').click(function(e){
+   promptBet = parseInt(prompt("place your bet"));
+    bet = promptBet;
+   $( '#betTab' ).text("$"+bet);
+   dealCards()
+ })
+//Test: take an input bet from the player, siplay the bet amount,
+//deal cards to both the player and the dealer
+
  $('#stay').click(function(e){
    $( '#hitme' ).hide();
    $( '#stay' ).hide();
@@ -234,18 +253,31 @@ var newDealerValue =  dealerHits(dealerValue)
   puttingHandValueOnBoard.text(displayPlayHand);
 
 
-  if (dealerValue > 21){
-    alert("You win")
-  } else if(playerValue > dealerValue){
+
+  if (newDealerValue> 21){
+    alert("Dealer busts You win")
+    balance += bet
+    $( '#balance' ).text("$"+balance)
+    console.log(balance)
+  } else if(playerValue > newDealerValue){
       alert("You win")
-    }else if(playerValue < dealerValue){
+      balance += bet
+      console.log(balance)
+      $( '#balance' ).text("$"+balance)
+    }else if(playerValue < newDealerValue){
        alert("You lose")
-    }else if(playerValue === dealerValue){
+       balance -= bet
+       $( '#balance' ).text("$"+balance)
+       console.log(balance)
+    }else if(playerValue === newDealerValue){
         alert("push")
+        balance = balance
+        console.log(balance)
+        $( '#balance' ).text("$"+balance)
     }
  });
 
-//Test: allow the player to stay with the number of cards they currently have, call the dealer
+//Test: allow the player to stand with the number of cards they currently have,
 //Display all the dealers cards and calculate the value of the dealers hand
 //tell the player if they one or lost the hand update the players bank balance.
 

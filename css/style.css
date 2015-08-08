@@ -1,33 +1,67 @@
-body {
-background: "taple.jpg";
 
- width:1280px;
+
+body {
+background-image: url("9.jpg");
+ width:100%;
   height:100%;
   margin:auto;
   text-align:center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 h1{
 
-  color:black;
+  color:white;
 }
 
 .Player{
   position:relative;
   width: 75%;
-  border: 2px solid yellow;
-  height: 250px;
+  border: 1px solid yellow;
+  height: 200px;
   margin-left: 10%;
-  background-color: darkgreen;
-  bottom: 0px;
+  bottom: -8em;
+  color:white
 }
 
 .dealer{
-position:relative;
+  position:relative;
+  border: 1px solid yellow;
   width: 75%;
-  border: 2px solid red;
-  height: 250px;
+  height: 200px;
   margin-left: 10%;
-  background-color: lightgreen;
-  top: 0px;
+  top: 3em;
+color:white
 }
+
+.button{
+  position: relative;
+   right:-25em;
+  bottom: -10em;
+  display:inline-block;
+
+}
+
+h2{
+  font-size: 1.30em;
+}
+
+table{
+  position: relative;
+  left: 6.5em;
+  top: 6.5em;
+}
+table, th, td {
+border: 1px solid yellow;
+ }
+ th{
+   background-color: lightgrey;
+   text-align: left;
+
+ }
+
+ td{
+   color:white;
+
+ }
