@@ -153,7 +153,10 @@ function dealer(card){
   dealerCard1.css('bottom', '0.375em');
   dealerCard2.css('bottom', '0.375em');
   dealerCard2.attr('id', 'seconddealerCard');
-  dealerCard2.css('background','white');
+  var imgback ="/Users/kevincampbell/src/wdi/BlackJack/table.jpg"
+  dealerCard2.css('background-image', 'url("' + imgback + '")');
+  dealerCard2.children().css('opacity', '0.0');
+  //dealerCard2.css('background','white');
 
  var dealerhandValue = dealerHand[0].gameValue + dealerHand[1].gameValue;
  var dealerConsole = $(".dealer");
@@ -209,7 +212,7 @@ $('#bet').click(function(e){
   dealCards()
   $( '#bet' ).hide()
 })
-//Test: take an input bet from the player, display the bet amount,
+//Test: take an input bet from the player, disiplay the bet amount,
 //deal cards to both the player and the dealer
 
 var hitCardSpacing = 12;
@@ -282,6 +285,7 @@ var playerHit = hitMe(card(deck));
    $( '#stay' ).hide();
   var newDealerValue =  dealerHits(dealerValue)
   $ ('#seconddealerCard').css('background','black');
+  $ ('#seconddealerCard').children().css('opacity', '1.0');
   $( '.dealervalue' ).show();
   var displayPlayHand = "Dealer Hand: " + newDealerValue;
   var puttingHandValueOnBoard = $(".dealervalue").text(displayPlayHand);
