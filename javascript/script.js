@@ -10,7 +10,7 @@ function init(){
 var playerValue;
 var dealerValue;
 var bet;
-var balance = 400;
+var balance = 500;
 $( '#hitme' ).hide();
 $( '#stay' ).hide();
 $( '#deal' ).hide();
@@ -88,13 +88,13 @@ var symbol = $('<div>').addClass('spotCenter')
 return displayCard
 }
 
-//Test Generate a 'real' deck of cards so players can see their hands.
+//Test Generate a 'real' card so players can see their hands.
 
 function card(deck){
 
 var randomIndex = Math.floor(Math.random()*deck.length);
    card1 = deck.splice(randomIndex, 1)[0];
-  //console.log(card1)
+
   return card1;
 
 }
@@ -104,7 +104,9 @@ function player(card){
    var playerHand = []
     playerHand[0] = card(deck);
     playerHand[1] = card(deck);
-   var playerhandValue = playerHand[0].gameValue + playerHand[1].gameValue;
+
+
+
   playercard1 = cardGenerator(playerHand[0].number, playerHand[0].suit);
   playercard2 = cardGenerator(playerHand[1].number, playerHand[1].suit);
   playercard2.css('left','12.0em');
@@ -115,11 +117,28 @@ function player(card){
   var playerConsole = $(".Player");
     playerConsole.append(playercard1);
     playerConsole.append(playercard2);
+
+
+ if(playerHand[0].number === "A"){
+    playerHand[0].gameValue = parseInt(prompt("Please type either 1 or 11"));
+     while(playerHand[0].gameValue != 1 && playerHand[0].gameValue != 11){
+       playerHand[0].gameValue = parseInt(prompt("Please type either 1 or 11"));
+     }
+ }
+
+ if(playerHand[1].number === "A"){
+   playerHand[1].gameValue = parseInt(prompt("Please type either 1 or 11"));
+   while(playerHand[1].gameValue != 1 && playerHand[1].gameValue != 11){
+     playerHand[1].gameValue = parseInt(prompt("Please type either 1 or 11"));
+   }
+ }
+
+ var playerhandValue = playerHand[0].gameValue + playerHand[1].gameValue;
+
  return playerhandValue;
 }
 
-
-//Test deal two cards to the player and record thier summed value.
+//Test: deal two cards to the player and record thier summed value.
 
 
 function dealer(card){
@@ -141,8 +160,6 @@ function dealer(card){
  dealerConsole.append(dealerCard1);
  dealerConsole.append(dealerCard2);
 
-
-
 return dealerhandValue;
 
 }
@@ -154,12 +171,9 @@ return dealerhandValue;
 function hitMe(card){
     return card;
 }
- var playerHitCard = hitMe(card)
+ //var playerHitCard = hitMe(card)
 
 //Test generate one random card to give to the player if requested or to the deal if the value of the dealers hand is under 16.
-
-
-
 
 function dealCards(){
   $( "div" ).remove( ".card" );
@@ -181,10 +195,34 @@ function dealCards(){
 
 //Test: Deal two random Cards to the player and the dealer when the deal button is pressed
 
+$('#bet').click(function(e){
+  promptBet = parseInt(prompt("place your bet"));
+  var isWord = isNaN(promptBet);
+    while(isWord){
+      alert("You inputted a word please input a number");
+      promptBet = parseInt(prompt("place your bet"));
+      var isWord = isNaN(promptBet)
+     }
+
+   bet = promptBet;
+  $( '#betTab' ).text("$"+bet);
+  dealCards()
+  $( '#bet' ).hide()
+})
+//Test: take an input bet from the player, display the bet amount,
+//deal cards to both the player and the dealer
+
 var hitCardSpacing = 12;
 $("#hitme").click(function(e){
 
-  var playerHit = hitMe(card(deck));
+var playerHit = hitMe(card(deck));
+  if(playerHit.number === "A"){
+      playerHit.gameValue = parseInt(prompt('Please type either 1 or 11'))
+      while(playerHit.gameValue != 1 && playerHit.gameValue != 11){
+        playerHit.gameValue = parseInt(prompt("Please type either 1 or 11"));
+      }
+  }
+
 
   hitCardSpacing +=4
   var hitDisplay = cardGenerator(playerHit.number, playerHit.suit)
@@ -205,13 +243,17 @@ $("#hitme").click(function(e){
     hitCardSpacing = 12;
     $( '#hitme' ).hide();
     $( '#stay' ).hide();
+    balance -= bet
+    $( '#balance' ).text("$"+balance)
+    $( '#bet' ).show()
   }
 
  });
 
  //Test :give the player a random card when the hit me button is clicked.
  //Calculate the value of the player's hand based on the value of the hit card(s).
- //Tells a player when they have gone over 21
+ //Tells a player when they have gone over 21.
+ //Decrease the players balance if they go over 21
 
  function dealerHits(dealerhandValue){
    var dealerHitCardspacing = 12;
@@ -233,19 +275,12 @@ $("#hitme").click(function(e){
  }
  //Test: make the dealer take a hit if the value of the dealers hand is less or equal to 17.
 
- $('#bet').click(function(e){
-   promptBet = parseInt(prompt("place your bet"));
-    bet = promptBet;
-   $( '#betTab' ).text("$"+bet);
-   dealCards()
- })
-//Test: take an input bet from the player, siplay the bet amount,
-//deal cards to both the player and the dealer
+
 
  $('#stay').click(function(e){
    $( '#hitme' ).hide();
    $( '#stay' ).hide();
-var newDealerValue =  dealerHits(dealerValue)
+  var newDealerValue =  dealerHits(dealerValue)
   $ ('#seconddealerCard').css('background','black');
   $( '.dealervalue' ).show();
   var displayPlayHand = "Dealer Hand: " + newDealerValue;
@@ -275,12 +310,16 @@ var newDealerValue =  dealerHits(dealerValue)
         console.log(balance)
         $( '#balance' ).text("$"+balance)
     }
+    $( '#bet' ).show()
  });
 
 //Test: allow the player to stand with the number of cards they currently have,
 //Display all the dealers cards and calculate the value of the dealers hand
 //tell the player if they one or lost the hand update the players bank balance.
-
+$('#startOver').click(function() {
+    location.reload();
+});
+//Test allow the player to restart the game.
 
 
 
