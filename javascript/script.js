@@ -152,7 +152,7 @@ function dealer(card){
   dealerCard1.css('bottom', '0.375em');
   dealerCard2.css('bottom', '0.375em');
   dealerCard2.attr('id', 'seconddealerCard');
-  var imgback ="/Users/kevincampbell/src/wdi/BlackJack/table.jpg"
+  var imgback ="table.jpg"
   dealerCard2.css('background-image', 'url("' + imgback + '")');
   dealerCard2.children().css('opacity', '0.0');
   //dealerCard2.css('background','white');
