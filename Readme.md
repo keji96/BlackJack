@@ -19,7 +19,6 @@
 - The player can restart the game at any time by hitting the 'Start Over' button.
 
 ##Screen-Shot
-Inline-style:
 ![alt text](BlackJack screenshot.png "Black Jack Screen Shot")
 
 ##Technologies
@@ -32,7 +31,7 @@ Inline-style:
 ##UserStory
 - As a user I would like to keep track of my bankroll so that I can know how much cash I have won.
 
-- As a user I would like to place bets so that I can increase my bankroll
+- As a user I would like to place bets so that I can increase my bankroll.
 
 - As a user I would like to be dealt two cards at first so that I can make bets and decide weather to take a hit or to stay.
 

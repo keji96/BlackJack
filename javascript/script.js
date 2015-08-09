@@ -14,7 +14,6 @@ var balance = 500;
 $( '#hitme' ).hide();
 $( '#stay' ).hide();
 $( '#deal' ).hide();
-//console.log(balance)
 
 function cardDeck(){
     var suits = ['hearts', 'spades', "diams", "clubs"];
@@ -69,7 +68,7 @@ var displayCard = $('<div>').addClass("card");
 
 var symbol = $('<div>').addClass('spotCenter')
     var suit = suit;
-    //console.log(suit);
+
     symbol.html("&"+suit+";");
     symbol.css('fontSize', '250%')
     symbol.css('position', 'absolute')
@@ -112,7 +111,7 @@ function player(card){
   playercard2.css('left','12.0em');
   playercard2.css('bottom', '0.375em');
   playercard1.css('bottom', '0.375em');
-  //console.log(playerHand[0].suit);
+
 
   var playerConsole = $(".Player");
     playerConsole.append(playercard1);
@@ -174,7 +173,6 @@ return dealerhandValue;
 function hitMe(card){
     return card;
 }
- //var playerHitCard = hitMe(card)
 
 //Test generate one random card to give to the player if requested or to the deal if the value of the dealers hand is under 16.
 
@@ -199,7 +197,7 @@ function dealCards(){
 //Test: Deal two random Cards to the player and the dealer when the deal button is pressed
 
 $('#bet').click(function(e){
-  promptBet = parseInt(prompt("place your bet"));
+  promptBet = parseInt(prompt("Place your bet"));
   var isWord = isNaN(promptBet);
     while(isWord){
       alert("You inputted a word please input a number");
@@ -276,7 +274,7 @@ var playerHit = hitMe(card(deck));
 
  return dealerhandValue;
  }
- //Test: make the dealer take a hit if the value of the dealers hand is less or equal to 17.
+ //Test: Make the dealer take a hit if the value of the dealer's hand is less or equal to 17.
 
 
 
